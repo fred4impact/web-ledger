@@ -52,3 +52,8 @@ jobs:
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/web-ledger:${{ github.sha }}
+
+  deploy:
+    needs: build-test-scan
+    runs-on: ubuntu-latest
+    environment: production
