@@ -40,7 +40,7 @@ jobs:
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/web-ledger:${{ github.sha }} .
 
       - name: Scan Docker image (Trivy)
-        uses: aquasecurity/trivy-action@v0.19.1
+        uses: aquasecurity/trivy-action@v0.19.0
         with:
           image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/web-ledger:${{ github.sha }}
 
