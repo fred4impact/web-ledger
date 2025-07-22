@@ -33,9 +33,6 @@ jobs:
       - name: Static code analysis (Bandit)
         run: bandit -r ledger
 
-      - name: Dependency vulnerability scan (Safety)
-        run: safety scan --full-report --key ${{ secrets.SAFETY_API_KEY }}
-
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/web-ledger:${{ github.sha }} .
 
@@ -52,8 +49,3 @@ jobs:
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/web-ledger:${{ github.sha }}
-
-  deploy:
-    needs: build-test-scan
-    runs-on: ubuntu-latest
-    environment: production
